@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "./components/Header/Header";
-import Detail from "./components/Detail/Detail";
+const Detail = React.lazy(() => import("./components/Detail/Detail"));
 
 const page = () => {
   return (
     <div>
       <Header />
-      <Detail />
+      <Suspense fallback={<div>loading...</div>}>
+        <Detail />
+      </Suspense>
     </div>
   );
 };
