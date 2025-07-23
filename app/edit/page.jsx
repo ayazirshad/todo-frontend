@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "./components/Header/Header";
-import EditForm from "./components/EditForm/EditForm";
+const EditForm = React.lazy(() => import("./components/EditForm/EditForm"));
 
 const page = () => {
   return (
     <div>
       <Header />
-      <EditForm />
+      <Suspense fallback={<div>loading...</div>}>
+        <EditForm />
+      </Suspense>
     </div>
   );
 };
