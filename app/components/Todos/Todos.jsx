@@ -6,12 +6,13 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 import Link from "next/link";
 
 const Todos = () => {
+  const url = process.env.NEXT_PUBLIC_SERVER_URL;
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchTodos = async () => {
     setLoading(true);
-    const response = await fetch("http://localhost:8080/task/getTasks", {
+    const response = await fetch(`${url}/task/getTasks`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -27,7 +28,7 @@ const Todos = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:8080/task/delete/${id}`, {
+    await fetch(`${url}/task/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -37,7 +38,7 @@ const Todos = () => {
   };
 
   const handleMarkDone = async (todo) => {
-    await fetch(`http://localhost:8080/task/update/${todo._id}`, {
+    await fetch(`${url}/task/update/${todo._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

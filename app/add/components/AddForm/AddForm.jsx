@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 const AddForm = () => {
   const url = process.env.NEXT_PUBLIC_SERVER_URL;
-  const devUrl = "http://localhost:8080";
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +16,6 @@ const AddForm = () => {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:8080",
       },
       body: JSON.stringify(task),
     });

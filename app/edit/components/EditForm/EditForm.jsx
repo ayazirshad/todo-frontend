@@ -4,6 +4,7 @@ import { redirect, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 const EditForm = () => {
+  const url = process.env.NEXT_PUBLIC_SERVER_URL;
   const searchParams = useSearchParams();
   const dataString = searchParams.get("data");
   const data = JSON.parse(dataString);
@@ -15,7 +16,7 @@ const EditForm = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await fetch(`http://localhost:8080/task/update/${data._id}`, {
+    await fetch(`${url}/task/update/${data._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import { FaRegCircleCheck } from "react-icons/fa6";
 
 const CompletedTodos = () => {
+  const url = process.env.NEXT_PUBLIC_SERVER_URL;
   const [todos, setTodos] = useState(null);
 
   const fetchTodos = async () => {
-    const response = await fetch("http://localhost:8080/task/getTasks", {
+    const response = await fetch(`${url}/task/getTasks`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -22,7 +23,7 @@ const CompletedTodos = () => {
   }, []);
 
   const handleMarkPending = async (todo) => {
-    await fetch(`http://localhost:8080/task/update/${todo._id}`, {
+    await fetch(`${url}/task/update/${todo._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
